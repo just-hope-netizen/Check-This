@@ -1,0 +1,75 @@
+.stat_container,
+.container,
+.stats_wrapper,
+.harmless_stat,
+.suspicious_stat,
+.malicious_stat,
+.unrated_stat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container {
+  max-width: 500px;
+  margin: 0 auto 20px;
+  width: 100%;
+  flex-direction: column;
+}
+.stat_container {
+  flex-direction: column;
+}
+.stats_wrapper {
+  justify-content: space-between;
+  width: inherit;
+}
+.h4 {
+  margin-bottom: 50px;
+  font-size: 30px;
+}
+
+.harmless_stat,
+.suspicious_stat,
+.malicious_stat,
+.unrated_stat {
+  padding: 10px;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  background-color: #fff;
+  border: 10px solid;
+  font-size: 30px;
+}
+.harmless_style,
+.harmless_stat {
+    color: green;
+    border-color: green;
+}
+.malicious_style,
+.malicious_stat {
+  color: red;
+  border-color: red;
+}
+.suspicious_style,
+.suspicious_stat {
+    color: #fda629;
+    border-color: #fda629;
+}
+.unrated_style,
+.unrated_stat {
+    color: gray;
+    border-color: gray;
+}
+@media (max-width: 375px) {
+    .h4{
+        font-size: 20px;
+        margin-bottom: 30px;
+    }
+    .harmless_stat,
+    .suspicious_stat,
+    .malicious_stat,
+    .unrated_stat {
+      width: 50px;
+      height: 50px;
+      font-size: 20px;
+    }
+}

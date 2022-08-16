@@ -1,0 +1,53 @@
+.container {
+    display: flex;
+}
+.h4{
+    color: #ff3366;
+    margin-bottom: 10px;
+}
+.main{
+    margin: 80px 0;
+}
+.result_wrapper {
+    width: 100%;
+}
+.result {
+    background-color: #fff;
+    color: #000;
+    padding: 20px 50px 20px 20px;
+    margin-bottom: 3px;
+    width: 50%;
+    display: inline-block;
+}
+.content{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+ .harmless_content, .unrated_content, .suspicious_content, .malicious_content {
+  display: flex;
+  align-items: center;
+}
+.harmless_content{
+    color:green
+}
+.malicious_content{
+  color: red;
+}
+.suspicious_content {
+  color: #fda629;
+}
+.unrated_content {
+  color: gray;
+}
+@media (max-width: 768px) {
+    .result{
+        width: 100%;
+    }
+}
+@media (max-width: 425px) {
+    .result{
+        padding: 20px 5px;
+    }
+}
