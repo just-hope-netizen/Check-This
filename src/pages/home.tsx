@@ -17,6 +17,8 @@ function Home() {
 
   function submitHandler(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    console.log(process.env.REACT_APP_VIRUS_TOTAL_API_KEY);
+    return
     setShowSpinner(true);
     scanUrl(url).then((res) => {
       const urlId = res.data.data.id;

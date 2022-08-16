@@ -105,7 +105,7 @@
 .logo_container{
   font-size: 10px;
 }
-.input{
+.input, .button{
   padding: 10px;
 }
 }
