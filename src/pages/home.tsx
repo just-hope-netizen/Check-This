@@ -16,14 +16,10 @@ function Home() {
   const [jokeRes, setJokeRes] = useState<jokeInt>({});
 
   function submitHandler(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-         getRandomJoke().then((res) => {
-           console.log(res);
-           
-         });
-         return
     setShowSpinner(true);
     scanUrl(url).then((res) => {
+      console.log(res);
+      
       const urlId = res.data.data.id;
 
       getUrlAnalysis(urlId).then((res) => {
