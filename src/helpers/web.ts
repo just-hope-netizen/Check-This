@@ -4,8 +4,12 @@ import { jokeInt, scanInt, analysisInt } from './interface'
 
 export async function scanUrl(url: string): Promise<scanInt> {
   try {
-    const encodedParams = new URLSearchParams();
-    encodedParams.set('url', url);
+    console.log(url);
+    
+    // const encodedParams = new URLSearchParams();
+    const encodedParams = `url=${url}`;
+    // encodedParams.set('url', url);
+console.log(encodedParams);
 
     const options = {
       method: 'POST',

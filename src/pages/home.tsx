@@ -22,6 +22,7 @@ function Home() {
     scanUrl(url).then((res) => {
       console.log(url);
       console.log(res);
+      return
       const urlId = res.data.data.id;
       
       getUrlAnalysis(urlId).then((res) => {
