@@ -4,7 +4,7 @@ import { jokeInt, scanInt, analysisInt } from './interface'
 
 export async function scanUrl(url: string): Promise<scanInt> {
   try {
-    console.log(url);
+    console.log(process.env.REACT_APP_VIRUS_TOTAL_API_KEY);
     
     // const encodedParams = new URLSearchParams();
     const encodedParams = `url=${url}`;
