@@ -16,12 +16,14 @@ function Home() {
   const [jokeRes, setJokeRes] = useState<jokeInt>({});
 
   function submitHandler(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    
     setShowSpinner(true);
     scanUrl(url).then((res) => {
+      const urlId = res.data.data.id;
+      console.log(url);
       console.log(res);
       
-      const urlId = res.data.data.id;
-
       getUrlAnalysis(urlId).then((res) => {
         if (res.data.data.attributes.status === 'completed') {
           setResult(res.data.data.attributes.results);
