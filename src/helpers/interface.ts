@@ -17,6 +17,8 @@ export interface scanInt {
       id: string;
       type: string;
     };
+    message: string;
+    code: string;
   };
 }
 
@@ -40,6 +42,7 @@ export interface analysisInt {
         status: string;
       };
     };
+    
   };
 }
 

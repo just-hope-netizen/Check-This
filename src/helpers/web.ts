@@ -1,26 +1,21 @@
 import axios from 'axios';
-import { jokeInt, scanInt, analysisInt } from './interface'
+import { jokeInt, scanInt, analysisInt } from './interface';
 
+const proxyServer = 'https://check-this-proxy.herokuapp.com/';
 
 export async function scanUrl(url: string): Promise<scanInt> {
   try {
-    console.log(process.env.REACT_APP_VIRUS_TOTAL_API_KEY);
-    
-    // const encodedParams = new URLSearchParams();
-    const encodedParams = `url=${url}`;
-    // encodedParams.set('url', url);
-console.log(encodedParams);
-
-    const options = {
-      method: 'POST',
-      url: 'https://www.virustotal.com/api/v3/urls',
-      headers: {
-        Accept: 'application/json',
-        'x-apikey': process.env.REACT_APP_VIRUS_TOTAL_API_KEY!,
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      data: encodedParams,
-    };
+        const options = {
+          method: 'POST',
+          url: `${proxyServer}scan`,
+          headers: {
+            Accept: 'application/json',
+          },
+          data: {
+            url:url,
+            key: process.env.REACT_APP_VIRUS_TOTAL_API_KEY
+          }
+        };
 
     const req = await axios.request(options);
     return req as scanInt;
@@ -29,16 +24,17 @@ console.log(encodedParams);
   }
 }
 
-
-
 export async function getUrlAnalysis(id: string): Promise<analysisInt> {
   try {
     const options = {
-      method: 'GET',
-      url: `https://www.virustotal.com/api/v3/analyses/${id}`,
+      method: 'POST',
+      url: `${proxyServer}analysis`,
       headers: {
         Accept: 'application/json',
-        'x-apikey': process.env.REACT_APP_VIRUS_TOTAL_API_KEY!,
+      },
+      data: {
+        id: id,
+        key: process.env.REACT_APP_VIRUS_TOTAL_API_KEY,
       },
     };
 
@@ -49,24 +45,19 @@ export async function getUrlAnalysis(id: string): Promise<analysisInt> {
   }
 }
 
- 
-
-
-export async function getRandomJoke() :Promise<jokeInt>{
-  try{
-   const options = {
-     method: 'GET',
-     url: 'https://dad-jokes.p.rapidapi.com/random/joke',
-     headers: {
-       'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY!,
-       'X-RapidAPI-Host': 'dad-jokes.p.rapidapi.com',
-     },
-    
-   };
+export async function getRandomJoke(): Promise<jokeInt> {
+  try {
+    const options = {
+      method: 'GET',
+      url: 'https://dad-jokes.p.rapidapi.com/random/joke',
+      headers: {
+        'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY!,
+        'X-RapidAPI-Host': 'dad-jokes.p.rapidapi.com',
+      },
+    };
     const req = await axios.request(options);
     return req as jokeInt;
   } catch (err) {
-    return err as jokeInt
+    return err as jokeInt;
   }
- 
 }

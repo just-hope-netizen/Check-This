@@ -17,41 +17,40 @@ function Home() {
 
   function submitHandler(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    
+
     setShowSpinner(true);
     scanUrl(url).then((res) => {
-      console.log(url);
-      console.log(res);
-      return
-      const urlId = res.data.data.id;
-      
-      getUrlAnalysis(urlId).then((res) => {
-        if (res.data.data.attributes.status === 'completed') {
-          setResult(res.data.data.attributes.results);
-          setStats(res.data.data.attributes.stats);
-          setShowSpinner(false);
-         
-        } else {
-          //if respond status is 'queue'
-          //make another request to the api for the result after 20seconds
-          // in the mean time make request to random joke api
-          setTimeout(() => {
-            getUrlAnalysis(urlId).then((res) => {
-              setResult(res.data.data.attributes.results);
-              setStats(res.data.data.attributes.stats);
-              setShowSpinner(false);
-             
-            });
-          }, 20000);
+      if (res.data.code) {
+        alert(res.data.code);
+        setShowSpinner(false);
+      } else {
+        const urlId = res.data.data.id;
+        getUrlAnalysis(urlId).then((res) => {
+          if (res.data.data.attributes.status === 'completed') {
+            setResult(res.data.data.attributes.results);
+            setStats(res.data.data.attributes.stats);
+            setShowSpinner(false);
+          } else {
+            //if respond status is 'queue'
+            //make another request to the api for the result after 20seconds
+            // in the mean time make request to random joke api
+            setTimeout(() => {
+              getUrlAnalysis(urlId).then((res) => {
+                setResult(res.data.data.attributes.results);
+                setStats(res.data.data.attributes.stats);
+                setShowSpinner(false);
+              });
+            }, 20000);
 
-          getRandomJoke().then((res) => {
-            setJokeRes(res);
-          });
-        }
-      });
+            getRandomJoke().then((res) => {
+              setJokeRes(res);
+            });
+          }
+        });
+      }
     });
   }
-     
+
   return (
     <main className={styles.main_container}>
       <header className={styles.header}>
