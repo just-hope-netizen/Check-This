@@ -1,12 +1,9 @@
 .container {
     display: flex;
 }
-.h4{
-    color: #ff3366;
-    margin-bottom: 10px;
-}
+
 .main{
-    margin: 80px 0;
+    margin-bottom: 80px;
 }
 .result_wrapper {
     width: 100%;

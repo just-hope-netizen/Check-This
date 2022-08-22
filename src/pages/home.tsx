@@ -5,7 +5,7 @@ import Results from '../components/result';
 import Stats from '../components/stats';
 import { jokeInt, resultInt, statsInt } from '../helpers/interface';
 
-import { getUrlAnalysis, scanUrl, getRandomJoke } from '../helpers/web';
+import { getRandomJoke, getUrlAnalysis, scanUrl } from '../helpers/web';
 import styles from './home.module.css';
 
 function Home() {
@@ -14,6 +14,7 @@ function Home() {
   const [result, setResult] = useState<resultInt>({});
   const [stats, setStats] = useState<statsInt>({});
   const [jokeRes, setJokeRes] = useState<jokeInt>({});
+  const [resUrl, setResUrl] = useState<string>('');
 
   function submitHandler(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -27,18 +28,24 @@ function Home() {
         const urlId = res.data.data.id;
         getUrlAnalysis(urlId).then((res) => {
           if (res.data.data.attributes.status === 'completed') {
+            setResUrl(res.data.meta.url_info.url);
             setResult(res.data.data.attributes.results);
             setStats(res.data.data.attributes.stats);
             setShowSpinner(false);
-          } else {
-            //if respond status is 'queue'
-            //make another request to the api for the result after 20seconds
-            // in the mean time make request to random joke api
-            setTimeout(() => {
-              getUrlAnalysis(urlId).then((res) => {
+    
+    
+    
+  } else {
+    //if respond status is 'queue'
+    //make another request to the api for the result after 20seconds
+    // in the mean time make request to random joke api
+    setTimeout(() => {
+      getUrlAnalysis(urlId).then((res) => {
                 setResult(res.data.data.attributes.results);
                 setStats(res.data.data.attributes.stats);
+                setResUrl(res.data.meta.url_info.url);
                 setShowSpinner(false);
+
               });
             }, 20000);
 
@@ -50,6 +57,8 @@ function Home() {
       }
     });
   }
+
+
 
   return (
     <main className={styles.main_container}>
@@ -90,6 +99,10 @@ function Home() {
       {Object.keys(result).length > 0 ? (
         <div>
           <Stats {...stats} />
+          <h4 className={styles.h4}>
+            Security experts analysis for:
+            <span className={styles.h4_child}>&nbsp;{resUrl}</span>
+          </h4>
           <Results {...result} />
         </div>
       ) : (

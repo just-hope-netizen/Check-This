@@ -16,6 +16,7 @@ function JokeComponent(props: jokeInt) {
               {res.punchline}
             </h4>
           </div>
+          <span className={styles.loader} />
         </div>
       ))}
     </>

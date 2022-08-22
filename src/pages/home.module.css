@@ -42,10 +42,18 @@
   width: 100%;
   max-width: 450px;
   outline: none;
+  border: none;
   border-radius: 7px;
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
   border-right: none;
+}
+.h4{
+  margin: 70px 0 10px;
+}
+.h4_child{
+  color: #ff3366;
+
 }
 .button,
 .input {

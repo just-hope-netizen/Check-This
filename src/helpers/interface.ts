@@ -41,7 +41,14 @@ export interface analysisInt {
         };
         status: string;
       };
-    };
+    },
+    meta:{
+      url_info:{
+        id: string,
+        url: string
+
+      }
+    }
     
   };
 }

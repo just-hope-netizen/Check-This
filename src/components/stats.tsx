@@ -1,9 +1,16 @@
 import { statsInt } from '../helpers/interface';
 import styles from './stats.module.css';
+import { useEffect, useRef } from 'react';
+
 
 function Stats(props: statsInt) {
+   const elRef = useRef<HTMLDivElement | null>(null);
+   useEffect(() => {
+     elRef.current?.scrollIntoView();
+   }, []);
+   
   return (
-    <div className={styles.container}>
+    <div className={styles.container} ref={elRef}>
       <h4 className={styles.h4}>Security experts summary</h4>
       <div className={styles.stats_wrapper}>
         <div className={styles.stat_container}>

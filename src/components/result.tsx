@@ -3,9 +3,9 @@ import { resultInt } from '../helpers/interface';
 import styles from './result.module.css';
 
 function Results(props: resultInt) {
+ 
   return (
-    <div className={styles.main}>
-      <h4 className={styles.h4}>Security experts analysis</h4>
+    <div className={styles.main} >
       <div className={styles.container}>
         <div className={styles.result_wrapper}>
           {Object.values(props)
