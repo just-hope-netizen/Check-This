@@ -1,21 +1,21 @@
 import axios from 'axios';
 import { jokeInt, scanInt, analysisInt } from './interface';
 
-const proxyServer = 'https://check-this-proxy.herokuapp.com/';
+const proxyServer = 'https://check-proxy-production.up.railway.app/';
 
 export async function scanUrl(url: string): Promise<scanInt> {
   try {
-        const options = {
-          method: 'POST',
-          url: `${proxyServer}scan`,
-          headers: {
-            Accept: 'application/json',
-          },
-          data: {
-            url:url,
-            key: process.env.REACT_APP_VIRUS_TOTAL_API_KEY
-          }
-        };
+    const options = {
+      method: 'POST',
+      url: `${proxyServer}scan`,
+      headers: {
+        Accept: 'application/json',
+      },
+      data: {
+        url: url,
+        key: process.env.REACT_APP_VIRUS_TOTAL_API_KEY,
+      },
+    };
 
     const req = await axios.request(options);
     return req as scanInt;
